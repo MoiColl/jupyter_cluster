@@ -28,7 +28,7 @@ This file contains the code to submit a job to slurm queue system with `sbatch` 
 Other considerations you must have:
   1. The environment the script will run needs all the necessary packages intalled (`R`, `shiny`, `tidyverse`...). In my case, I use the `GenerationInterval` environment. Change the conda environment in which you have all the necessary packages installed.
   2. I source my `~/.bashrc` file, but you might not be interested on doing it (or you might not even have this file). You can remove this command although I don't think it would bug the process to have it there.
-  3. The port I run the shiny app on is specified at the end of the command `jupyter lab ...` as an argument. In the default file it is `4444` but it might be problematic if multiple cluster users use the same port. Thus, be creative and change the port to the 4 digit number that you prefer :) .
+  3. The port I run the shiny app on is specified at the end of the command `jupyter lab ...` as an argument. In the default file it is `1234` but it might be problematic if multiple cluster users use the same port. Thus, be creative and change the port to the 4 digit number that you prefer :) . It is very important that this port is the same as the cluster port (variable `c`) on `jupyter_cluster.sh`.
 
 ## 2. `jupyter_cluster.sh`
 
@@ -40,7 +40,7 @@ The script has different steps that are reported on your terminal. Here I'm goin
 
   1. Checking if the port is free to use
 
-This step checks if the port defined by the user is already on use in your local machine. This might happen if there is another application that is using it (very unlikely) or if last time you run `jupyter_cluster` you did not kill the port and is still active. If the port is not already active, the script will carry on to the next step. Otherwise, I will ask you if you want to kill the process that uses it. By typing "Y" and pressing enter (or just pressing enter) it will kill the process and the port will be free for the script to use. If not, the script will exit. In case you don't want to kill the process using the port, you will need to change port. This can be achieved specifying a new port with the command `bash shiny_cluster -l 1234`, for example.
+This step checks if the port defined by the user is already on use in your local machine. This might happen if there is another application that is using it (very unlikely) or if last time you run `jupyter_cluster` you did not kill the port and is still active. If the port is not already active, the script will carry on to the next step. Otherwise, I will ask you if you want to kill the process that uses it. By typing "Y" and pressing enter (or just pressing enter) it will kill the process and the port will be free for the script to use. If not, the script will exit. In case you don't want to kill the process using the port, you will need to change port. This can be achieved specifying a new port with the command `bash shiny_cluster -l 1234`, for example. It is very important that this port is the same as the port indicated on `job.sh`.
 
   2. Checking if there is already a jupyter cluster job
 
