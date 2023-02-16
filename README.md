@@ -2,7 +2,7 @@
 
 This is a bash script to run a jupyter lab on a slurm cluster (GenomeDK) and connect to the node where it is running from your local computer and open it on the Chrome browser. 
 
-> NOTE: There is a much better package, easy to use and conda installable called [slurm-jupyter](https://github.com/kaspermunch/slurm-jupyter). In fact, this repo is highly inpired by slurm-jupyter. I recomend you use that one. The only advatage of jupyter cluster is that is more basic, and thus, probably easier to customize.
+> NOTE: There is a much better package, easy to use and conda installable called [slurm-jupyter](https://github.com/kaspermunch/slurm-jupyter). In fact, this repo is highly inspired by slurm-jupyter. I recomend you use that one. The only advatage of jupyter cluster is that is more basic, and thus, probably easier to customize.
 
 In more detail, the script `jupyter_cluster.sh` will submit to `slurm` a job `job.sh` on the cluster. The job submitted will run `jupyter lab`. Then, `shiny_cluster` will check periodically if the job started running. Once it does, it creates a shh tunnel which connects to the node in which the job is running on the cluster. Finally, it opens the jupyter lab to the Chrome browser of your local machine.
 
