@@ -185,10 +185,10 @@ else
 	done;
 	if [ -z ${out} ] || [ ${out} == "Y" ];
 	then
-		outfile=`ssh ${u}@login.genome.au.dk 'egrep "#SBATCH -o" '${s}' | awk '\''{print $3}'\'''`
+		errorfile=`ssh ${u}@login.genome.au.dk 'egrep "#SBATCH -e" '${s}' | awk '\''{print $3}'\'''`
 		echo ""
 		echo "--------------------------- OUT ---------------------------"
-		ssh ${u}@login.genome.au.dk 'tail -f '${outfile}''
+		ssh ${u}@login.genome.au.dk 'tail -f '${errorfile}''
 		echo "-----------------------------------------------------------"
 		echo ""
 	fi
